@@ -70,3 +70,8 @@ WHERE gender = 'M';
 SELECT COUNT(*) AS count_female
 FROM employee_payroll
 WHERE gender = 'F';
+
+ALTER TABLE employee_payroll
+ADD phone VARCHAR(15),  -- Adjust the length as needed
+    address VARCHAR(255) DEFAULT 'Not Available',  -- Set a default value
+    department VARCHAR(50) NOT NULL;
