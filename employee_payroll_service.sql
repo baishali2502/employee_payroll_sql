@@ -75,3 +75,11 @@ ALTER TABLE employee_payroll
 ADD phone VARCHAR(15),  -- Adjust the length as needed
     address VARCHAR(255) DEFAULT 'Not Available',  -- Set a default value
     department VARCHAR(50) NOT NULL;
+    
+-- Add columns for Basic Pay, Deductions, Taxable Pay, Income Tax, and Net Pay
+ALTER TABLE employee_payroll
+ADD COLUMN basic_pay DECIMAL(10, 2),
+ADD COLUMN deductions DECIMAL(10, 2),
+ADD COLUMN taxable_pay DECIMAL(10, 2),
+ADD COLUMN income_tax DECIMAL(10, 2),
+ADD COLUMN net_pay DECIMAL(10, 2);
