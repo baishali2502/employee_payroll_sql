@@ -21,3 +21,11 @@ SELECT * FROM employee_payroll;
 SELECT salary FROM employee_payroll WHERE NAME = 'Bill';
 SELECT * FROM employee_payroll WHERE start_date BETWEEN CAST('2018-01-01' AS DATE) AND DATE(NOW());
 
+ALTER TABLE employee_payroll
+ADD gender CHAR(1);
+
+UPDATE employee_payroll
+SET gender = 'M'
+WHERE NAME = 'Bill' OR NAME = 'Charlie';
+
+SELECT * FROM employee_payroll;
