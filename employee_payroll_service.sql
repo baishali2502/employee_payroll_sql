@@ -72,9 +72,9 @@ FROM employee_payroll
 WHERE gender = 'F';
 
 ALTER TABLE employee_payroll
-ADD phone VARCHAR(15),  -- Adjust the length as needed
-    address VARCHAR(255) DEFAULT 'Not Available',  -- Set a default value
-    department VARCHAR(50) NOT NULL;
+ADD COLUMN phone VARCHAR(15),  -- Adjust the length as needed
+ADD COLUMN address VARCHAR(255) DEFAULT 'Not Available',  -- Set a default value
+ADD COLUMN department VARCHAR(50) NOT NULL;
     
 -- Add columns for Basic Pay, Deductions, Taxable Pay, Income Tax, and Net Pay
 ALTER TABLE employee_payroll
@@ -83,3 +83,13 @@ ADD COLUMN deductions DECIMAL(10, 2),
 ADD COLUMN taxable_pay DECIMAL(10, 2),
 ADD COLUMN income_tax DECIMAL(10, 2),
 ADD COLUMN net_pay DECIMAL(10, 2);
+
+-- Insert Terissa into Sales and Marketing Department
+INSERT INTO employee_payroll (NAME, salary, start_date, gender, phone, address, department, basic_pay, deductions, taxable_pay, income_tax, net_pay)
+VALUES
+('Terissa', 60000.00, '2023-07-01', 'F', '123-456-7890', '123 Main St', 'Sales and Marketing', 50000.00, 10000.00, 40000.00, 5000.00, 35000.00);
+
+-- Update Terissa's department to Sales and Marketing
+UPDATE employee_payroll
+SET department = 'Sales and Marketing'
+WHERE NAME = 'Terissa';
