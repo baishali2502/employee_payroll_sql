@@ -95,7 +95,7 @@ SET department = 'Sales and Marketing'
 WHERE NAME = 'Terissa';
 
 DESCRIBE employee_payroll;
-
+-- ----------------------------------------------------------- UC-10 ----------------------------------------------------------------
 CREATE TABLE Company (
     CompanyID INT PRIMARY KEY,
     CompanyName VARCHAR(255),
@@ -191,6 +191,9 @@ VALUES
 (8, 50000.00, 10000.00, 40000.00, 5000.00, 35000.00, 8),
 (9, 60000.00, 12000.00, 48000.00, 6000.00, 42000.00, 9),
 (10, 70000.00, 15000.00, 55000.00, 7000.00, 48000.00, 10);
+
+-- --------------------------------------------------- UC-11 ------------------------------------------------------------
+
 -- Sum of male and female salaries
 SELECT
     SUM(p.BasicPay) AS TotalSalary,
@@ -224,3 +227,31 @@ SELECT
     COUNT(CASE WHEN e.Gender = 'F' THEN 1 END) AS FemaleEmployees
 FROM Employee e;
 
+-- ---------------------------------------------- UC-12(Redo UC-4 , 5)  -------------------------------------------------------
+
+-- UC -4 :- 
+
+-- Retrieve all the employee payroll data
+
+SELECT * FROM Payroll;
+
+
+-- UC-5 :-
+
+-- View Bill's salary .
+-- This query involves joining the Employee and Payroll tables based on the common EmployeeID:
+SELECT
+    e.Name AS EmployeeName,
+    p.BasicPay AS Salary
+FROM Employee e
+JOIN Payroll p ON e.EmployeeID = p.EmployeeID
+WHERE e.Name = 'Bill';
+
+-- View the salaries of employees who have joined within the date range from '2018-01-01' until the current date
+SELECT
+    e.Name AS EmployeeName,
+    e.StartDate AS EmployeeStartDate,
+    p.BasicPay AS Salary
+FROM Employee e
+JOIN Payroll p ON e.EmployeeID = p.EmployeeID
+WHERE e.StartDate BETWEEN '2018-01-01' AND CURRENT_DATE;
